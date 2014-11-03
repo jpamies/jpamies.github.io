@@ -1,0 +1,14 @@
+# Site settings
+title: Jordi Pàmies - Software Engineer, Geek & Music lover
+email: mail@jpamies.com
+description: > # this means to ignore newlines until "baseurl:"
+  Personal Website where I'll write posts releated with Software Engineering,
+  Node.js, Scalability, linux, IoT, Smart Cities, RaspberryPi, or whatever I belive
+  could be useful to read it later.
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://www.jpamies.com" # the base hostname & protocol for your site
+twitter_username: jpamies
+github_username:  jpamies
+
+# Build settings
+markdown: kramdown
