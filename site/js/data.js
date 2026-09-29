@@ -276,8 +276,10 @@ export const places = [
     id: 'harbor',
     kind: 'projects',
     name: 'Kube Harbor',
-    summary: 'Where containers get shipped: open-source operators, CLIs and Terraform modules.',
-    cards: ['kubepilot', 'aegis', 'tf-certificate'],
+    summary:
+      'Where containers get shipped: open-source operators, CLIs and a community Terraform module with ' +
+      'more than half a million downloads.',
+    cards: ['tf-certificate', 'kubepilot', 'aegis'],
   },
   {
     id: 'stadium',
@@ -506,18 +508,18 @@ export const cards = [
   },
   {
     id: 'tf-certificate',
-    name: 'ACM Certificate',
+    name: 'Terraform ACM Module',
     type: 'iac',
-    rarity: 'common',
-    hp: 70,
+    rarity: 'holo',
+    hp: 150,
     icon: 'lock',
     moves: [
-      { name: 'DNS Validate', dmg: 30, text: 'Route 53 records, zero clicks.' },
-      { name: 'Wildcard', dmg: 50, text: '*.example.com secured.' },
+      { name: '500K+ Downloads', dmg: 90, text: 'Pulled half a million times from the Terraform Registry.' },
+      { name: 'DNS Validate', dmg: 50, text: 'Certificates + Route 53 validation, zero clicks.' },
     ],
     weakness: 'Expired certs ×2',
-    resistance: 'Manual toil −30',
-    flavor: 'Terraform Registry module that creates and validates AWS ACM certificates.',
+    resistance: 'Manual toil −50',
+    flavor: 'Open-source community module since 2018: create and validate TLS certificates with Terraform.',
     links: { repo: gh('terraform-aws-certificate'), live: 'https://registry.terraform.io/modules/jpamies/certificate/aws' },
   },
   {

@@ -117,7 +117,8 @@ ${badgesHTML(badges.map((b) => b.id))}
 // Recruiter-friendly, printable CV. Same data as the game.
 export function cvHTML() {
   const career = places.filter((p) => p.kind === 'career').slice().reverse();
-  const projects = cards.filter((c) => c.links.repo);
+  const hubCards = places.filter((p) => p.kind === 'projects').flatMap((p) => p.cards);
+  const projects = [...hubCards.map((id) => cardById[id]), ...cards.filter((c) => !hubCards.includes(c.id))].filter((c) => c.links.repo);
   const allSkills = [...new Set(career.flatMap((p) => (p.skills || []).map((s) => s.name)))];
   return `<header class="cv-header">
   <h1>${esc(profile.name)}</h1>
