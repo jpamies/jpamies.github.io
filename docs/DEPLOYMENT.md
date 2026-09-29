@@ -18,8 +18,10 @@ issues to the `deploy` job.
 3. Once the certificate is issued (can take up to ~1 h): tick **Enforce HTTPS**.
 4. **Settings → Environments → `github-pages`** (created on first deploy): keep the
    *Deployment branches* rule limited to the default branch.
-5. Recommended: **Settings → Code security** → enable *Private vulnerability reporting*,
-   *Dependabot alerts/security updates*, *Secret scanning* and *Push protection*.
+5. **Settings → Code security**: enable **Code scanning → CodeQL → Advanced** (required: the *Security*
+   workflow's CodeQL job fails with "Code scanning is not enabled" until this is on), plus
+   *Private vulnerability reporting*, *Dependabot alerts/security updates*, *Secret scanning* and
+   *Push protection*.
 6. Recommended: a branch protection/ruleset on `master` requiring the *Test & build* check.
 
 > With a custom Actions workflow GitHub ignores the `CNAME` file for configuration — the domain lives in
