@@ -5,7 +5,7 @@ import { buildLogo } from './engine/logos.js';
 import { sfx, startMusic, stopMusic, setSound, unlockAudio } from './engine/audio.js';
 import { buildings } from './engine/world.js';
 import { places, placeById, cards, cardById, npcs } from './data.js';
-import { cardHTML, placeHTML, binderHTML, trainerHTML, cvHTML } from './ui/templates.js';
+import { cardHTML, placeHTML, binderHTML, trainerHTML, cvHTML, cardHint, esc } from './ui/templates.js';
 
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
@@ -163,7 +163,7 @@ function openZoom(id) {
   const stage = $('.zoom-stage');
   const locked = !state.collected.has(id);
   stage.innerHTML = locked
-    ? `${cardHTML(card, { locked: true })}<p class="zoom-hint">Not found yet. Keep exploring!</p>`
+    ? `${cardHTML(card, { locked: true })}<p class="zoom-hint">${esc(cardHint(card))}</p>`
     : cardHTML(card);
   hydrateIcons(stage);
   bindTilt(stage);

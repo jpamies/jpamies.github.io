@@ -616,6 +616,7 @@ export const cards = [
     weakness: 'Doorbells ×2',
     resistance: 'Rain −10',
     flavor: 'The very good dog behind the 2014 Raspberry Pi bark-detector hack.',
+    hint: 'A very good dog is wandering the grass west of town. Say hi!',
     links: {},
   },
   {
@@ -632,6 +633,7 @@ export const cards = [
     weakness: 'None',
     resistance: 'Everything −99',
     flavor: 'Only true retro gamers ever find this one.',
+    hint: 'Old-school cheat codes still work around here… ↑↑↓↓…',
     links: {},
   },
   {
@@ -648,6 +650,7 @@ export const cards = [
     weakness: 'Football on TV ×2',
     resistance: 'Complexity −60',
     flavor: 'Awarded for visiting every place in Barcelona Tech Coast. Thanks for playing!',
+    hint: 'Visit every building in town to earn it.',
     links: { live: 'https://www.linkedin.com/in/jpamies/' },
   },
 ];

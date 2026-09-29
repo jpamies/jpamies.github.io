@@ -13,6 +13,13 @@ export function esc(value) {
 const ext = (url, label, cls = '') =>
   `<a class="${cls}" href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(label)}</a>`;
 
+// Where to find a card that hasn't been collected yet.
+export function cardHint(card) {
+  if (card.hint) return card.hint;
+  const place = places.find((p) => p.cards.includes(card.id));
+  return place ? `Hidden somewhere in ${place.name}.` : 'Not found yet. Keep exploring!';
+}
+
 export function cardHTML(card, { locked = false, isNew = false } = {}) {
   if (locked) {
     return `<button type="button" class="card is-locked" data-card="${esc(card.id)}" aria-label="Locked card">

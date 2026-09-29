@@ -63,7 +63,7 @@ const LOGOS = {
     },
   },
   elisava: textPlate('ELISAVA', P.ink, P.white),
-  admira: textPlate('ADMIRA', P.white, '#d7182a', '#d7182a'),
+  admira: textPlate('ADMIRA', P.white, '#18d7b7', '#d7182a'),
   costaisa: textPlate('COSTAISA', P.white, '#005b99', '#00a2ea'),
   madcollective: {
     w: 61,

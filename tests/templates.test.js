@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { esc, cardHTML, placeHTML, binderHTML, cvHTML } from '../site/js/ui/templates.js';
+import { esc, cardHTML, placeHTML, binderHTML, cvHTML, cardHint } from '../site/js/ui/templates.js';
 import { cards, places } from '../site/js/data.js';
 
 test('esc neutralises HTML metacharacters', () => {
@@ -34,6 +34,13 @@ test('templates never emit inline styles or scripts (CSP: style-src/script-src s
 test('locked cards do not leak their content', () => {
   const html = cardHTML(cards[0], { locked: true });
   assert.doesNotMatch(html, new RegExp(cards[0].name));
+});
+
+test('every card has a hint for when it is still locked', () => {
+  for (const c of cards) {
+    const hint = cardHint(c);
+    assert.ok(hint && !hint.startsWith('Not found yet'), `${c.id} has no useful hint`);
+  }
 });
 
 test('CV lists every role', () => {
