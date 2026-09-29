@@ -60,7 +60,7 @@ Any static server works too, e.g. `python -m http.server -d site 8080`.
 ## 🌍 Deployment
 
 Every push to `master`/`main` runs tests, builds `dist/` and deploys it to **GitHub Pages** via
-GitHub Actions (OIDC, no stored secrets). Pull requests only run the checks.
+GitHub Actions (OIDC, no stored secrets). Other branches and pull requests only run the checks.
 Custom domain and DNS setup: see [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).
 
 ## 📚 Docs

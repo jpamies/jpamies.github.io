@@ -3,8 +3,8 @@
 The site deploys automatically with [`.github/workflows/deploy.yml`](../.github/workflows/deploy.yml):
 
 ```
-push to master/main ─► npm test ─► npm run build ─► upload dist/ ─► deploy-pages (OIDC)
-pull request        ─► npm test ─► npm run build            (no deploy)
+push to master/main      ─► npm test ─► npm run build ─► upload dist/ ─► deploy-pages (OIDC)
+other branches / PRs     ─► npm test ─► npm run build            (no deploy)
 ```
 
 No secrets are required: `actions/deploy-pages` authenticates with the short-lived OIDC token GitHub
