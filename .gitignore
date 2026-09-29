@@ -1,3 +1,23 @@
-_site
-.sass-cache
+# Build output
+dist/
+
+# Dependencies (none today, but never commit them)
+node_modules/
+
+# Secrets & local env — never commit
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# OS / editor
 .DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# Logs
+*.log
+npm-debug.log*

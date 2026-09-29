@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests"
+    />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <title>Jordi Pàmies — Cloud Quest · Solutions Engineer @ Microsoft</title>
+    <meta
+      name="description"
+      content="Jordi Pàmies — Solutions Engineer at Microsoft, ex Senior Solutions Architect at AWS, Kubernetes & cloud-native expert from Barcelona. Explore his career as a retro RPG, or read the Quick CV."
+    />
+    <meta name="author" content="Jordi Pàmies" />
+    <meta name="theme-color" content="#1a1c2c" />
+    <link rel="canonical" href="https://jpamies.com/" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="assets/icon-192.png" />
+    <link rel="manifest" href="site.webmanifest" />
+    <meta property="og:type" content="profile" />
+    <meta property="og:url" content="https://jpamies.com/" />
+    <meta property="og:title" content="Jordi Pàmies — Cloud Quest" />
+    <meta property="og:description" content="A retro RPG through 20+ years of cloud, Kubernetes and side projects. Collect all the cards!" />
+    <meta property="og:image" content="https://jpamies.com/assets/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preload" href="assets/fonts/PressStart2P-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="css/main.css" />
+    <noscript><link rel="stylesheet" href="css/nojs.css" /></noscript>
+    <!-- JSONLD -->
+    <script type="module" src="js/main.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#cv">Skip the game — read the CV</a>
+
+    <canvas id="world" class="game-only" role="img" aria-label="Pixel-art map of Barcelona Tech Coast. Each building is a chapter of Jordi's career."></canvas>
+
+    <div id="boot" class="screen boot game-only" aria-hidden="true">
+      <div class="boot-logo">jpamies<span>®</span></div>
+    </div>
+
+    <section id="title" class="screen title game-only" hidden aria-labelledby="title-logo">
+      <div class="title-box">
+        <p class="title-pre">Jordi Pàmies presents</p>
+        <h1 id="title-logo" class="title-logo"><span>CLOUD</span><span>QUEST</span></h1>
+        <p class="title-sub">20+ years of cloud · a retro RPG</p>
+        <nav class="title-menu" aria-label="Main menu">
+          <button type="button" data-action="start"><span data-start-label>New game</span></button>
+          <button type="button" data-action="binder">Card binder</button>
+          <button type="button" data-action="cv">Quick CV</button>
+          <button type="button" data-action="sound">Sound: <span data-sound-label>on</span></button>
+        </nav>
+        <p class="title-hint blink">Press ENTER</p>
+      </div>
+      <p class="title-foot">© 2026 Jordi Pàmies · an original pixel adventure · no cookies, no tracking</p>
+    </section>
+
+    <header id="hud" class="hud game-only" hidden>
+      <p class="hud-place" data-hud-place>Barcelona Tech Coast</p>
+      <div class="hud-actions">
+        <button type="button" class="hud-btn" data-action="binder" aria-label="Open card binder">🃏 <span data-hud-cards>0/0</span></button>
+        <button type="button" class="hud-btn" data-action="cv" aria-label="Open Quick CV">CV</button>
+        <button type="button" class="hud-btn" data-action="menu" aria-label="Open menu">☰</button>
+      </div>
+    </header>
+
+    <div id="dialog" class="dialog game-only" hidden role="dialog" aria-live="polite" aria-labelledby="dialog-name">
+      <p id="dialog-name" class="dialog-name"></p>
+      <p class="dialog-text"></p>
+      <span class="dialog-next" aria-hidden="true">▼</span>
+    </div>
+
+    <div id="panel" class="overlay game-only" hidden role="dialog" aria-modal="true" aria-labelledby="panel-title">
+      <div class="panel">
+        <button type="button" class="panel-close" data-action="close" aria-label="Close">✕</button>
+        <div class="panel-body"></div>
+      </div>
+    </div>
+
+    <div id="menu" class="overlay game-only" hidden role="dialog" aria-modal="true" aria-label="Menu">
+      <nav class="menu">
+        <button type="button" data-action="close">Resume</button>
+        <button type="button" data-action="binder">Card binder</button>
+        <button type="button" data-action="trainer">Trainer card</button>
+        <button type="button" data-action="cv">Quick CV</button>
+        <button type="button" data-action="sound">Sound: <span data-sound-label>on</span></button>
+        <button type="button" data-action="night">Time: <span data-night-label>auto</span></button>
+        <button type="button" data-action="help">Controls</button>
+        <button type="button" data-action="reset">Reset progress</button>
+      </nav>
+    </div>
+
+    <div id="pack" class="overlay pack-overlay game-only" hidden role="dialog" aria-modal="true" aria-label="New cards">
+      <div class="pack-stage">
+        <div class="pack" aria-hidden="true"><span class="pack-top"></span><span class="pack-label">CLOUD QUEST<br />BOOSTER</span></div>
+        <div class="pack-cards"></div>
+        <p class="pack-hint blink">Press ENTER</p>
+      </div>
+    </div>
+
+    <div id="zoom" class="overlay zoom-overlay game-only" hidden role="dialog" aria-modal="true" aria-label="Card detail">
+      <div class="zoom-stage"></div>
+    </div>
+
+    <div id="toast" class="toast game-only" hidden role="status"></div>
+
+    <nav id="pad" class="pad game-only" hidden aria-hidden="true">
+      <div class="dpad">
+        <button type="button" class="pad-up" data-pad="up" tabindex="-1">▲</button>
+        <button type="button" class="pad-left" data-pad="left" tabindex="-1">◀</button>
+        <button type="button" class="pad-right" data-pad="right" tabindex="-1">▶</button>
+        <button type="button" class="pad-down" data-pad="down" tabindex="-1">▼</button>
+      </div>
+      <div class="abpad">
+        <button type="button" class="pad-b" data-pad="b" tabindex="-1">B</button>
+        <button type="button" class="pad-a" data-pad="a" tabindex="-1">A</button>
+      </div>
+    </nav>
+
+    <main id="cv" class="cv" tabindex="-1">
+      <div class="cv-toolbar game-only">
+        <button type="button" data-action="close-cv">◀ Back to the game</button>
+        <button type="button" data-action="print">Print / PDF</button>
+      </div>
+      <div class="cv-body"><!-- CV:START --><!-- CV:END --></div>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+/* Loaded only when JavaScript is disabled: show the plain CV instead of the game. */
+body {
+  overflow: auto;
+  background: #fbfbf8;
+}
+.game-only,
+.skip-link {
+  display: none !important;
+}
+.cv {
+  display: block;
+  color: #1f2330;
+}

@@ -1,0 +1,56 @@
+@font-face {
+  font-family: 'Press Start 2P';
+  src: url('../assets/fonts/PressStart2P-latin.woff2') format('woff2');
+  font-display: swap;
+}
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: #1a1c2c;
+  color: #f4f4f4;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+.lost {
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  padding: 24px;
+  gap: 8px;
+  background: repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.03) 0 2px, transparent 2px 4px);
+}
+.code {
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(56px, 16vw, 120px);
+  margin: 0;
+  color: #ffcd75;
+  text-shadow: 4px 4px 0 #ef7d57, 8px 8px 0 #b13e53, 12px 12px 0 #5d275d;
+}
+h1 {
+  font-family: 'Press Start 2P', monospace;
+  font-weight: 400;
+  font-size: clamp(14px, 3vw, 20px);
+  line-height: 1.5;
+}
+p {
+  max-width: 52ch;
+  margin: 8px auto;
+  line-height: 1.6;
+}
+a {
+  display: inline-block;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 11px;
+  color: #1a1c2c;
+  background: #73eff7;
+  padding: 12px 14px;
+  margin: 12px 4px;
+  text-decoration: none;
+  box-shadow: 0 0 0 3px #f4f4f4;
+}
+a:hover,
+a:focus-visible {
+  background: #a7f070;
+  outline: none;
+}
