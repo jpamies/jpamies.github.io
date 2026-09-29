@@ -127,6 +127,17 @@ function circ(ctx, color, cx, cy, r, inner = -1) {
 }
 
 const ICONS = {
+  cap(c) {
+    rect(c, P.ink, 1, 5, 14, 3);
+    rect(c, P.navy, 2, 5, 12, 2);
+    rect(c, P.navy, 4, 4, 8, 1);
+    rect(c, P.navy, 6, 3, 4, 1);
+    rect(c, P.steel, 4, 8, 8, 4);
+    rect(c, P.yellow, 12, 6, 1, 5);
+    rect(c, P.yellow, 11, 11, 3, 2);
+    rect(c, P.white, 3, 13, 10, 2);
+    rect(c, P.red, 7, 13, 2, 2);
+  },
   desk(c) {
     rect(c, P.steel, 3, 2, 10, 8);
     rect(c, P.sky, 4, 3, 8, 6);

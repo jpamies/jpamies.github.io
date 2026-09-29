@@ -1,6 +1,7 @@
 import { createGame } from './engine/game.js';
 import { createInput } from './engine/input.js';
 import { buildIcon } from './engine/sprites.js';
+import { buildLogo } from './engine/logos.js';
 import { sfx, startMusic, stopMusic, setSound, unlockAudio } from './engine/audio.js';
 import { buildings } from './engine/world.js';
 import { places, placeById, cards, cardById, npcs } from './data.js';
@@ -102,6 +103,15 @@ function closeAll() {
 
 // ---------- Icons, cards, tilt ----------
 function hydrateIcons(root) {
+  $$('canvas[data-logo]', root).forEach((c) => {
+    const img = buildLogo(c.dataset.logo);
+    if (!img) return;
+    c.width = img.width;
+    c.height = img.height;
+    const ctx = c.getContext('2d');
+    ctx.imageSmoothingEnabled = false;
+    ctx.drawImage(img, 0, 0);
+  });
   $$('canvas[data-icon]', root).forEach((c) => {
     const ctx = c.getContext('2d');
     ctx.imageSmoothingEnabled = false;
@@ -288,6 +298,7 @@ function advancePack() {
   const done = pack.done;
   pack.done = null;
   popLayer();
+  $('.pack-cards').innerHTML = '';
   done?.();
 }
 

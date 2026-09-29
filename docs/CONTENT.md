@@ -20,9 +20,19 @@ e-mail/phone numbers.
   roles: [{ title, company, period, points: ['…'] }], // Quick CV timeline
   skills: [{ name: 'Azure', level: 85 }],               // XP bars (0–100)
   badges: ['aws-sa'],          // optional, ids from `badges`
+  logos: ['microsoft'],        // optional, pixel logos from js/engine/logos.js (+ name in `logoNames`)
   cards: ['solutions-engineer'],
 }
 ```
+
+The UPC campus uses `kind: 'education'` (shown in game, not in the CV timeline; the CV lists
+`profile.education`). To add the degree or years, edit its `roles[0]` (`title`, `period`).
+
+## Add or change a logo
+
+Logos are tiny procedural drawings in `site/js/engine/logos.js` (`LOGOS[id] = { w, h, draw(ctx) }`).
+Add the accessible name to `logoNames` in `data.js`, reference the id from a place's `logos`, and place
+it on the façade in the building's `STYLES[...]` drawer in `js/engine/buildings.js`.
 
 Roles inside a place are listed newest first; places are listed oldest first (the CV reverses them).
 

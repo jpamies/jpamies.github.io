@@ -62,11 +62,32 @@ export const badges = [
 // Career `roles` feed the Quick CV timeline, newest chapter last.
 export const places = [
   {
+    id: 'upc',
+    kind: 'education',
+    chapter: 'Prologue',
+    name: 'UPC Campus',
+    period: 'Studies',
+    logos: ['upc'],
+    summary:
+      'Where the adventure begins: Universitat Politècnica de Catalunya · BarcelonaTech, the technical ' +
+      'university of Catalonia.',
+    roles: [
+      {
+        title: 'Studies',
+        company: 'Universitat Politècnica de Catalunya (UPC) · BarcelonaTech',
+        period: null,
+        points: ['The engineering foundations behind everything that came next.'],
+      },
+    ],
+    cards: ['student'],
+  },
+  {
     id: 'origins',
     kind: 'career',
     chapter: 'Chapter I',
     name: 'IT Crew HQ',
     period: '2002 – 2005',
+    logos: ['elisava', 'sabadell', 'tsystems'],
     summary:
       'The side-quest years: campus networks, a bank merger and the Parliament of Catalonia. Where I learned ' +
       'that every migration is a people problem first.',
@@ -109,6 +130,7 @@ export const places = [
     chapter: 'Chapter II',
     name: 'Admira Signage Tower',
     period: '2005 – 2015',
+    logos: ['admira'],
     summary:
       'Ten years and ten months as CTO & Principal Software Engineer at a digital signage & IoT company. ' +
       'Screens everywhere, APIs everywhere — and Google Glass arriving at the office in 2014.',
@@ -139,6 +161,7 @@ export const places = [
     chapter: 'Chapter III',
     name: 'COSTAISA Workshop',
     period: '2015 – 2016',
+    logos: ['costaisa'],
     summary: 'Back to the keyboard as a backend engineer, with Docker before Docker was cool.',
     roles: [
       {
@@ -165,6 +188,7 @@ export const places = [
     chapter: 'Chapter IV',
     name: 'SRE Lighthouse',
     period: '2016 – 2020',
+    logos: ['madcollective'],
     summary:
       'Infrastructure & SRE Manager at Mad Collective: leading sysadmins, DBAs and SREs through a full DevOps ' +
       'transformation.',
@@ -194,6 +218,7 @@ export const places = [
     chapter: 'Chapter V',
     name: 'Region eu-south-2',
     period: '2020 – 2026',
+    logos: ['aws'],
     summary:
       'Six years as Senior Solutions Architect at Amazon Web Services: containers & modernisation SME, ' +
       'enterprise migrations and part of the core team that launched the AWS Spain Region.',
@@ -225,6 +250,7 @@ export const places = [
     chapter: 'Chapter VI',
     name: 'Microsoft Campus',
     period: '2026 – now',
+    logos: ['microsoft'],
     summary:
       'The current chapter: Solutions Engineer at Microsoft in Barcelona — cloud computing on Azure and ' +
       'AI-assisted engineering with GitHub Copilot.',
@@ -270,6 +296,22 @@ export const places = [
 ];
 
 export const cards = [
+  {
+    id: 'student',
+    name: 'UPC Student',
+    type: 'code',
+    rarity: 'common',
+    hp: 40,
+    icon: 'cap',
+    moves: [
+      { name: 'All-Nighter', dmg: 20, text: 'Exam tomorrow. Coffee today.' },
+      { name: 'Compile & Pray', dmg: 30, text: 'It worked on the lab machine.' },
+    ],
+    weakness: 'Exam season ×2',
+    resistance: 'Sleep −20',
+    flavor: 'Universitat Politècnica de Catalunya · BarcelonaTech. Level 1 of a long adventure.',
+    links: {},
+  },
   {
     id: 'helpdesk',
     name: 'IT Rookie',
@@ -619,7 +661,7 @@ export const npcs = [
       'Benvingut! Welcome to Barcelona Tech Coast.',
       'This town is Jordi’s career: every building is a chapter or a set of projects.',
       'Walk into a door to enter. Each place hands you collectible cards.',
-      'Follow the Career Road: Chapter I starts in the south-west and ends at the Microsoft Campus.',
+      'Follow the Career Road: the Prologue is the UPC campus up north-west, Chapter I starts in the south-west and the story ends at the Microsoft Campus.',
       'Arrows or WASD to move, ENTER to talk, M for menu. On a phone, just tap where you want to go.',
     ],
   },
@@ -670,5 +712,18 @@ export const signs = [
 ];
 
 export const cardById = Object.fromEntries(cards.map((c) => [c.id, c]));
+
+// Accessible names for the pixel-art logos drawn in js/engine/logos.js.
+export const logoNames = {
+  upc: 'Universitat Politècnica de Catalunya',
+  elisava: 'ELISAVA',
+  sabadell: 'Banco Sabadell',
+  tsystems: 'T-Systems',
+  admira: 'Admira',
+  costaisa: 'COSTAISA',
+  madcollective: 'Mad Collective',
+  aws: 'Amazon Web Services',
+  microsoft: 'Microsoft',
+};
 export const placeById = Object.fromEntries(places.map((p) => [p.id, p]));
 export const badgeById = Object.fromEntries(badges.map((b) => [b.id, b]));

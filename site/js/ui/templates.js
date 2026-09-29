@@ -1,5 +1,5 @@
 // Pure string templates (no DOM) so the Quick CV can also be pre-rendered at build time in Node.
-import { profile, places, cards, cardById, badges, badgeById, types, rarities } from '../data.js';
+import { profile, places, cards, cardById, badges, badgeById, types, rarities, logoNames } from '../data.js';
 
 export function esc(value) {
   return String(value ?? '')
@@ -60,20 +60,24 @@ function badgesHTML(ids) {
 
 export function placeHTML(place, collected) {
   const own = place.cards.map((id) => cardById[id]);
-  const header =
-    place.kind === 'career'
-      ? `<p class="eyebrow">${esc(place.chapter)} · ${esc(place.period)}</p><h2 id="panel-title">${esc(place.name)}</h2>`
-      : `<p class="eyebrow">Side quests</p><h2 id="panel-title">${esc(place.name)}</h2>`;
+  const header = place.chapter
+    ? `<p class="eyebrow">${esc(place.chapter)} · ${esc(place.period)}</p><h2 id="panel-title">${esc(place.name)}</h2>`
+    : `<p class="eyebrow">Side quests</p><h2 id="panel-title">${esc(place.name)}</h2>`;
+  const logos = (place.logos || []).length
+    ? `<div class="place-logos">${place.logos
+        .map((id) => `<canvas data-logo="${esc(id)}" width="1" height="1" role="img" aria-label="${esc(logoNames[id] || id)} logo"></canvas>`)
+        .join('')}</div>`
+    : '';
   const roles = (place.roles || [])
     .map(
       (r) => `<section class="role">
   <h3>${esc(r.title)} <span class="at">@ ${esc(r.company)}</span></h3>
-  <p class="role-period">${esc(r.period)}</p>
+  ${r.period ? `<p class="role-period">${esc(r.period)}</p>` : ''}
   <ul class="quests">${r.points.map((p) => `<li>${esc(p)}</li>`).join('')}</ul>
 </section>`,
     )
     .join('');
-  return `${header}
+  return `${logos}${header}
 <p class="panel-summary">${esc(place.summary)}</p>
 ${roles}
 ${place.skills ? `<h3 class="section-title">Skills gained</h3>${skillsHTML(place.skills)}` : ''}

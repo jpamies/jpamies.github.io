@@ -8,6 +8,7 @@ index.html ──► js/main.js (UI state machine, overlays, save/load)
                  │    ├─ tiles.js          ground layer, pre-rendered once per water frame
                  │    ├─ buildings.js      façades, props, signs (+ per-frame animations & night lights)
                  │    ├─ sprites.js        people, dog, card icons (procedural + auto-outline)
+                 │    ├─ logos.js          pixel-art company / university logo homages
                  │    ├─ pixel.js / font.js palette, helpers, 3×5 bitmap font
                  │    └─ input.js          keyboard, touch pad, konami code
                  ├─ js/engine/audio.js     WebAudio chiptune

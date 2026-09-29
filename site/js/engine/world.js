@@ -22,6 +22,7 @@ const SOLID_TILES = new Set([T.WATER, T.TREE]);
 
 // Each building is a place from data.js. Door is on the bottom row at x + door.
 export const buildings = [
+  { id: 'upc', style: 'university', x: 3, y: 3, w: 7, h: 6, door: 3 },
   { id: 'origins', style: 'origins', x: 4, y: 21, w: 7, h: 5, door: 3 },
   { id: 'admira', style: 'admira', x: 3, y: 11, w: 7, h: 6, door: 3 },
   { id: 'costaisa', style: 'costaisa', x: 12, y: 3, w: 6, h: 5, door: 2 },
@@ -58,6 +59,7 @@ const roads = [
   [[11, 26], [11, 17], [6, 17]],
   [[11, 18], [20, 18]],
   [[11, 17], [11, 10], [41, 10]],
+  [[6, 9], [6, 10], [11, 10]],
   [[14, 8], [14, 10]],
   [[23, 9], [23, 10]],
   [[33, 8], [33, 10]],

@@ -1,8 +1,9 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { profile, places, cards, cardById, npcs, signs, badges, types, rarities } from '../site/js/data.js';
+import { profile, places, cards, cardById, npcs, signs, badges, types, rarities, logoNames } from '../site/js/data.js';
 import { iconNames } from '../site/js/engine/sprites.js';
 import { glyphNames } from '../site/js/engine/font.js';
+import { logoIds } from '../site/js/engine/logos.js';
 
 const isHttps = (u) => {
   const url = new URL(u);
@@ -50,8 +51,18 @@ test('profile links are https', () => {
 });
 
 test('in-world sign font covers every building sign character', () => {
-  const texts = ['IT CREW 2002', 'COSTAISA', 'MAD COLLECTIVE', 'AWS EU-SOUTH-2', 'MICROSOFT', 'STADIUM', 'KIDS LIBRARY', 'KUBE HARBOR', 'ADMIRA DIGITAL SIGNAGE', 'SMART CITY'];
+  const texts = ['IT CREW 2002', 'COSTAISA', 'MAD COLLECTIVE', 'AWS EU-SOUTH-2', 'MICROSOFT', 'STADIUM', 'KIDS LIBRARY', 'KUBE HARBOR', 'ADMIRA DIGITAL SIGNAGE', 'SMART CITY', 'UPC BARCELONATECH', 'ELISAVA'];
   for (const t of texts) for (const ch of t) assert.ok(glyphNames.includes(ch), `missing glyph ${ch}`);
+});
+
+test('every logo used by a place exists and has an accessible name', () => {
+  for (const p of places) {
+    for (const id of p.logos || []) {
+      assert.ok(logoIds.includes(id), `${p.id} logo ${id}`);
+      assert.ok(logoNames[id], `${id} needs a name`);
+    }
+  }
+  assert.deepEqual(Object.keys(logoNames).sort(), [...logoIds].sort());
 });
 
 test('no personal contact data (emails/phones) is published', () => {

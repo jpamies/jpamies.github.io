@@ -14,8 +14,8 @@ chapter, open booster packs and collect holographic trading cards of roles and o
 
 | | |
 |---|---|
-| 🗺️ **Overworld** | Procedural pixel-art town (no image assets): 6 career buildings in chronological order along the *Career Road*, 3 project hubs, the Sagrada Família (under construction, obviously), a harbour, a beach and a stadium. |
-| 🃏 **Card binder** | 21 collectible cards with 3D tilt + holo foil, booster-pack opening animation, rarities and secrets. |
+| 🗺️ **Overworld** | Procedural pixel-art town (no image assets): the UPC campus (prologue), 6 career buildings in chronological order along the *Career Road* — each with a pixel-art homage of the company logo — 3 project hubs, the Sagrada Família (under construction, obviously), a harbour, a beach and a stadium. |
+| 🃏 **Card binder** | 22 collectible cards with 3D tilt + holo foil, booster-pack opening animation, rarities and secrets. |
 | 🏅 **Trainer card** | Certifications shown as gym badges. |
 | 🌙 **Day/night** | Follows the visitor's local clock: lit windows, a lighthouse beam, stadium floodlights. |
 | 🎵 **Chiptune** | Original theme + SFX synthesised live with WebAudio (no audio files). |
@@ -75,4 +75,5 @@ Custom domain and DNS setup: see [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).
 - Code: [MIT](LICENSE).
 - Personal content (texts, career data) © Jordi Pàmies — please don't reuse it as your own CV 🙂.
 - Font: *Press Start 2P* by CodeMan38, [SIL Open Font License 1.1](site/assets/fonts/OFL.txt).
-- Company and product names belong to their respective owners and are used only to describe work history.
+- Company and product names and logos belong to their respective owners. The simplified pixel-art logo
+  homages (`site/js/engine/logos.js`) are used only to describe work history and education.

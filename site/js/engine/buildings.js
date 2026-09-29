@@ -2,9 +2,11 @@
 import { makeCanvas, rect, outline, hash2, P } from './pixel.js';
 import { drawTextCentered, textWidth } from './font.js';
 import { buildIcon } from './sprites.js';
+import { drawLogo, drawLogoCentered } from './logos.js';
 import { TILE } from './world.js';
 
 const cache = new Map();
+const AWS_FANS = [8, 30, 102, 124];
 
 function signBoard(ctx, text, cx, y, bg = P.wood, fg = P.white) {
   const w = textWidth(text) + 6;
@@ -52,17 +54,54 @@ function roof(ctx, b, color, shade, h) {
 }
 
 const STYLES = {
+  university(ctx, b) {
+    const w = b.w * TILE;
+    const h = b.h * TILE;
+    const stone = '#efe9dc';
+    const cx = w / 2;
+    for (let y = 2; y < 24; y++) {
+      const half = Math.min(w / 2, Math.round((y - 2) * 2.6));
+      rect(ctx, P.ink, cx - half - 1, y, half * 2 + 2, 1);
+      if (half > 1) rect(ctx, y % 4 === 0 ? '#ddd5c4' : stone, cx - half, y, half * 2, 1);
+    }
+    rect(ctx, P.ink, 0, 24, w, 1);
+    rect(ctx, stone, 0, 25, w, 7);
+    rect(ctx, P.ink, 0, 32, w, 1);
+    drawTextCentered(ctx, 'UPC BARCELONATECH', cx, 26, P.slate);
+    rect(ctx, '#e9e4d8', 2, 33, w - 4, h - 39);
+    const wins = [];
+    [14, 32, 74, 92].forEach((x) => {
+      rect(ctx, P.ink, x - 1, 39, 8, 26);
+      rect(ctx, P.sky, x, 40, 6, 24);
+      rect(ctx, P.white, x + 1, 41, 1, 8);
+      wins.push({ x, y: 40, w: 6, h: 24 });
+    });
+    [6, 24, 42, 64, 82, 100].forEach((x) => {
+      rect(ctx, P.ink, x - 1, 33, 8, h - 39);
+      rect(ctx, P.white, x, 33, 6, h - 39);
+      rect(ctx, '#d8d2c4', x + 4, 33, 2, h - 39);
+      rect(ctx, stone, x - 1, 33, 8, 3);
+    });
+    rect(ctx, P.stoneShade, 0, h - 6, w, 3);
+    rect(ctx, P.stone, 0, h - 3, w, 3);
+    door(ctx, b, P.navy);
+    drawLogoCentered(ctx, 'upc', cx, 9);
+    return wins;
+  },
   origins(ctx, b) {
     const w = b.w * TILE;
     const h = b.h * TILE;
     rect(ctx, '#e8dcc0', 1, 22, w - 2, h - 22);
     roof(ctx, b, P.navy, P.blue, 22);
-    rect(ctx, P.slate, 88, 2, 2, 8);
-    rect(ctx, P.silver, 82, 0, 12, 4);
+    rect(ctx, P.slate, 98, 2, 2, 8);
+    rect(ctx, P.silver, 94, 0, 12, 4);
     const wins = windowGrid(ctx, b, 2);
     rect(ctx, P.stoneShade, 1, h - 3, w - 2, 3);
     door(ctx, b);
     signBoard(ctx, 'IT CREW 2002', w / 2, 24);
+    drawLogo(ctx, 'elisava', 3, 6);
+    drawLogo(ctx, 'sabadell', 38, 5);
+    drawLogo(ctx, 'tsystems', 53, 5);
     return wins;
   },
   admira(ctx, b) {
@@ -75,6 +114,7 @@ const STYLES = {
     const wins = windowGrid(ctx, b, 3);
     rect(ctx, P.stoneShade, 1, h - 3, w - 2, 3);
     door(ctx, b, P.slate);
+    drawLogoCentered(ctx, 'admira', w / 2, 1);
     return wins;
   },
   costaisa(ctx, b) {
@@ -90,7 +130,7 @@ const STYLES = {
     rect(ctx, P.ink, 72, 0, 8, 1);
     const wins = windowGrid(ctx, b, 2);
     door(ctx, b);
-    signBoard(ctx, 'COSTAISA', w / 2, 22, P.navy);
+    drawLogoCentered(ctx, 'costaisa', w / 2, 21);
     return wins;
   },
   lighthouse(ctx, b) {
@@ -113,7 +153,7 @@ const STYLES = {
     rect(ctx, P.red, 0, 80, w, 6);
     rect(ctx, P.ink, 0, 86, w, 1);
     door(ctx, b, P.navy);
-    signBoard(ctx, 'MAD COLLECTIVE', cx, 89, P.navy);
+    drawLogoCentered(ctx, 'madcollective', cx, 88);
     return [
       { x: cx - 3, y: 40, w: 6, h: 8 },
       { x: cx - 3, y: 60, w: 6, h: 8 },
@@ -125,11 +165,11 @@ const STYLES = {
     rect(ctx, '#3a4556', 1, 16, w - 2, h - 16);
     rect(ctx, P.awsInk, 0, 0, w, 16);
     rect(ctx, P.ink, 0, 16, w, 1);
-    for (let i = 0; i < 4; i++) {
-      const fx = 12 + i * 34;
+    for (const fx of AWS_FANS) {
       rect(ctx, P.slate, fx, 3, 12, 10);
       rect(ctx, P.ink, fx + 1, 4, 10, 8);
     }
+    drawLogoCentered(ctx, 'aws', w / 2, 2);
     rect(ctx, P.awsOrange, 1, 17, w - 2, 3);
     const racks = [];
     for (let col = 0; col < b.w; col++) {
@@ -313,13 +353,13 @@ export function drawBuildingAnim(ctx, b, ox, oy, t, night, lights) {
           rect(ctx, blink ? P.awsOrange : P.steel, ox + r.x + 4, oy + r.y + 2 + u * 4, 1, 1);
         }
       });
-      for (let i = 0; i < 4; i++) {
-        const fx = ox + 12 + i * 34 + 6;
+      AWS_FANS.forEach((x, i) => {
+        const fx = ox + x + 6;
         const fy = oy + 8;
         const a = t * 8 + i;
         rect(ctx, P.silver, fx + Math.round(Math.cos(a) * 3) - 1, fy + Math.round(Math.sin(a) * 3) - 1, 2, 2);
         rect(ctx, P.silver, fx - Math.round(Math.cos(a) * 3) - 1, fy - Math.round(Math.sin(a) * 3) - 1, 2, 2);
-      }
+      });
       if (night) lights.push({ x: ox + w / 2, y: oy + h / 2, r: 50, c: '255,153,0' });
       break;
     }

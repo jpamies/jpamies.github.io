@@ -394,6 +394,18 @@ kbd {
   background: var(--red);
   outline: none;
 }
+.place-logos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 0 44px 14px 0;
+}
+.place-logos canvas {
+  height: 44px;
+  width: auto;
+  image-rendering: pixelated;
+  filter: drop-shadow(3px 3px 0 rgba(0, 0, 0, 0.25));
+}
 .eyebrow {
   font-family: var(--pixel);
   font-size: 9px;
@@ -496,6 +508,7 @@ meter::-webkit-meter-bar {
 meter::-webkit-meter-optimum-value {
   background: linear-gradient(90deg, var(--green), var(--lime));
   border-radius: 0;
+  transform-origin: left;
   animation: fill 0.8s steps(8) both;
   animation-delay: var(--delay, 0ms);
 }
@@ -505,7 +518,6 @@ meter::-moz-meter-bar {
 @keyframes fill {
   from {
     transform: scaleX(0);
-    transform-origin: left;
   }
 }
 
